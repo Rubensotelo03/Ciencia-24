@@ -1,4 +1,3 @@
-# this is just a main file example
+import Utils.imports as imp
 
-def get_square_area(side_length):
-    return side_length ** 2
+dataset =imp.read_inegi_dataset("data/conjunto_de_datos_natalidad_2021.csv")
