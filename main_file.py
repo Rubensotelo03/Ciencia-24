@@ -2,7 +2,7 @@ import pandas as pd
 import plotly.express as px
 
 #aquí cargar los datos
-#df = pd.read_csv("data/conjunto_de_datos_natalidad_2021.csv")
+df = pd.read_csv("")
 
 df_jalisco = df[df['ent_ocurr'] == 14]
 
