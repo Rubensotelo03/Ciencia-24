@@ -5,8 +5,7 @@ from sklearn.impute import SimpleImputer
 
 
 def Inegi_heatmap():
-    #conjunto_de_datos_natalidad_2021.csv
-    df = pd.read_csv("")
+    df = pd.read_csv("conjunto_de_datos_natalidad_2021.csv")
 
     df_jalisco = df[df['ent_ocurr'] == 14].copy()
 
@@ -44,12 +43,14 @@ def normalizacion():
     df = pd.read_csv("diabetes.txt", sep='\t')
     df = df.apply(pd.to_numeric, errors='coerce')
 
-    imputer = SimpleImputer(strategy='mean')
-    df_imputed = pd.DataFrame(imputer.fit_transform(df), columns=df.columns)
+    last_column = df.iloc[:, -1]
+    df_to_normalize = df.iloc[:, :-1]
 
     scaler = StandardScaler()
-    df_normalized = pd.DataFrame(scaler.fit_transform(df_imputed), columns=df.columns)
+    df_normalized = pd.DataFrame(scaler.fit_transform(df_to_normalize), columns=df_to_normalize.columns)
 
-    df_normalized.to_csv('diabetes_normalized.csv', index=False)
+    df_final = pd.concat([df_normalized, last_column], axis=1)
 
-    print("Datos normalizados guardados en 'diabetes_normalized.csv'")
+    df_final.to_csv('diabetes_normalized.csv', index=False)
+
+    print("Datos normalizados guardados en 'diabetes_normalized.csv' ")
