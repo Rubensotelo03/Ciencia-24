@@ -41,7 +41,6 @@ def Inegi_heatmap():
 
 def normalizacion():
     df = pd.read_csv("diabetes.txt", sep='\t')
-    df = df.apply(pd.to_numeric, errors='coerce')
 
     last_column = df.iloc[:, -1]
     df_to_normalize = df.iloc[:, :-1]
